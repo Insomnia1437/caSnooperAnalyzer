@@ -1,5 +1,28 @@
 # caSnooperAnalyzer
 
+This project is for control people to check the load of the EPICS network.
+
+Using caSnooper to analyze Channel Access broadcast packets every day and send the result to your email
+
+## How to use
+### checkout this program
+`git clone https://github.com/Insomnia1437/caSnooperAnalyzer.git`
+
+### configuration
+modify the config file `config/config.ini`
+
+### two ways to run as a crontab job
+
+use `crontab -e` to edit your crontab job. Maybe you need to set `$EDITOR` first
+
+use your own python and path
+ 
+- `30 * * * * /usr/new/pkg/python/3.7.2_x64/bin/python3 /yourdirectory/caSnooperAnalyzer/src/caSA.py >> /yourdirectory/caSnooperAnalyzer/log/caSA.log 2>1&`
+- `30 * * * * /yourdirectory/python/caSnooperAnalyzer/src/cron.sh`
+
+
+
+## caSnooper
 > [caSnooper User Guide](https://epics.anl.gov/EpicsDocumentation/ExtensionsManuals/CaSnooper/CaSnooper.html)
 
 | option    | explanation                                                  |

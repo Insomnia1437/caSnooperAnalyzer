@@ -7,29 +7,18 @@
 
 import smtplib
 from email.mime.text import MIMEText
-import configparser
 
 
 class MyMailSender:
-    def __init__(self):
-        self.cfg = configparser.ConfigParser()
-        self.cfg.read("../config/robotmail.ini")
-        self.mail_host = self.cfg.get('163', 'host')
-        self.mail_user = self.cfg.get("163", 'user')
-        self.mail_pass = self.cfg.get("163", 'pass')
-        self.sender = self.cfg.get("163", 'sender')
-        self.receivers = [self.cfg.get("163", 'receivers')]
+    # receivers should be a list like ['test@mail.com', 'test2@mail.com']
+    def __init__(self, mailhost, mailuser, mailpass, sender, receivers):
+        self.mail_host = mailhost
+        self.mail_user = mailuser
+        self.mail_pass = mailpass
+        self.sender = sender
+        self.receivers = receivers
 
-    def add_receivers(self, receivers):
-        if type(receivers) is list:
-            if self.receivers[0] in receivers:
-                self.receivers = receivers
-            else:
-                self.receivers.extend(receivers)
-        if type(receivers) is str:
-            self.receivers.append(receivers)
-
-    def send_by_163(self, context='context', subject='subject'):
+    def send_mail(self, context='context', subject='subject'):
         if len(context) is 0:
             print("mail send Error: no content")
             return -1
