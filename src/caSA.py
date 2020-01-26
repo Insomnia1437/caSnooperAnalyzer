@@ -20,7 +20,7 @@ class caSA():
         self.cfg = configparser.ConfigParser()
         self.cfg.read(conf_path)
         # for casnooper
-        self.caSnooper_path = self.cfg.get('casnooper', 'caspath')
+        self.caSnooper_path = self.cfg.get('casnooper', 'casnooper')
         self.caSnooper_time = self.cfg.get('casnooper', 'castime')
         self.caSnooper_print = self.cfg.get('casnooper', 'casprint')
         self.casthreshold = float(self.cfg.get('casnooper', 'casthreshold'))

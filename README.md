@@ -9,16 +9,16 @@ Using caSnooper to analyze Channel Access broadcast packets every day and send t
 `git clone https://github.com/Insomnia1437/caSnooperAnalyzer.git`
 
 ### configuration
-modify the config file `config/config.ini`
+1. modify the config file `config/config.ini`
+2. modify the shell script `src/cron.sh`
 
-### two ways to run as a crontab job
+### run this project as a crontab job
 
 use `crontab -e` to edit your crontab job. Maybe you need to set `$EDITOR` first
 
-use your own python and path
+use your own python and your path. do not forget to execute `chmod 777 cron.sh` command.
  
-- `30 * * * * /usr/new/pkg/python/3.7.2_x64/bin/python3 /yourdirectory/caSnooperAnalyzer/src/caSA.py >> /yourdirectory/caSnooperAnalyzer/log/caSA.log 2>1&`
-- `30 * * * * /yourdirectory/python/caSnooperAnalyzer/src/cron.sh`
+- `30 * * * * /usr/users/sdcswd/python/caSnooperAnalyzer/src/cron.sh`
 
 
 

@@ -128,3 +128,4 @@ dmypy.json
 /test/
 /config/
 !/config/config.ini
+!/log/caSA.log

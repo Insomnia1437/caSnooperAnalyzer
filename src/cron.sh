@@ -1,1 +1,2 @@
-/usr/new/pkg/python/3.7.2_x64/bin/python3 /yourdirectory/caSnooperAnalyzer/src/caSA.py >> /yourdirectory/caSnooperAnalyzer/log/caSA.log 2>1&
+cd /home/sdcswd/workspace/python/caSnooperAnalyzer/src
+/home/sdcswd/.pyenv/shims/python3 /home/sdcswd/workspace/python/caSnooperAnalyzer/src/caSA.py >> /home/sdcswd/workspace/python/caSnooperAnalyzer/log/caSA.log 2>&1
