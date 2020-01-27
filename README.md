@@ -18,7 +18,7 @@ use `crontab -e` to edit your crontab job. Maybe you need to set `$EDITOR` first
 
 use your own python and your path. do not forget to execute `chmod 777 cron.sh` command.
  
-- `30 * * * * /usr/users/sdcswd/python/caSnooperAnalyzer/src/cron.sh`
+- `30 * * * * /home/sdcswd/workspace/python/caSnooperAnalyzer/src/cron.sh`
 
 
 

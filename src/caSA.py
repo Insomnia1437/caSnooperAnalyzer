@@ -21,15 +21,15 @@ class caSA():
         self.cfg.read(conf_path)
         # for casnooper
         self.caSnooper_path = self.cfg.get('casnooper', 'casnooper')
-        self.caSnooper_time = self.cfg.get('casnooper', 'castime')
-        self.caSnooper_print = self.cfg.get('casnooper', 'casprint')
+        self.caSnooper_time = int(self.cfg.get('casnooper', 'castime'))
+        self.caSnooper_print = int(self.cfg.get('casnooper', 'casprint'))
         self.casthreshold = float(self.cfg.get('casnooper', 'casthreshold'))
         # for mail
         self.mail_host = self.cfg.get('mail', 'smtp')
         self.mail_user = self.cfg.get("mail", 'user')
         self.mail_pass = self.cfg.get("mail", 'pass')
-        self.sender = self.cfg.get("mail", 'from,')
-        self.casanum = self.cfg.get("mail", 'casanum')
+        self.sender = self.cfg.get("mail", 'from')
+        self.casanum = int(self.cfg.get("mail", 'casanum'))
         to = self.cfg.get("mail", 'to')
         maillist = re.split(r'[ ]+', to)
         self.receivers = maillist
@@ -97,7 +97,7 @@ class caSA():
 
 
 if __name__ == '__main__':
-    path = os.path.abspath(os.path.join(os.getcwd(), '..'))
+    path = os.path.abspath(os.path.join(os.getcwd()))
     config_path = os.path.join(path, "config/config.ini")
     if not os.path.exists(config_path):
         print("config file not exist")
