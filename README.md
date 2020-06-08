@@ -14,13 +14,44 @@ Using caSnooper to analyze Channel Access broadcast packets every day and send t
 
 ### run this project as a crontab job
 
-use `crontab -e` to edit your crontab job. Maybe you need to set `$EDITOR` first
+use `crontab -e` to edit your crontab job. Perhaps you need to set the `$EDITOR` env value first.
 
 use your own python and your path. do not forget to execute `chmod 777 cron.sh` command.
  
-- `30 * * * * /home/sdcswd/workspace/python/caSnooperAnalyzer/src/cron.sh`
+`30 * * * * /home/sdcswd/workspace/python/caSnooperAnalyzer/src/cron.sh`
 
+### Using ElasticSearch as a database
 
+We (KEK Linac Control Group) began to use ElasticSearch and Logstash to monitor the Control Network environment recently.
+
+But running two `caSnooper` might cause the `beacon anomaly`. See [https://epics.anl.gov/base/R3-14/12-docs/CAref.html#casw](https://epics.anl.gov/base/R3-14/12-docs/CAref.html#casw)
+
+One of the solution is to use the data from ElasticSearch database.
+
+Using this method, crontab should run every day:
+
+`0 8 * * * /home/sdcswd/workspace/python/caSnooperAnalyzer/src/cron.sh`
+
+The CaSnooper parse results in ES document:
+
+```json
+{
+        "_index" : "linac-casnooper-2020.05.27",
+        "_type" : "_doc",
+        "_id" : "uCxbVnIBlwLZIrpPx2Zq",
+        "_score" : 1.0,
+        "_source" : {
+          "@version" : "1",
+          "@timestamp" : "2020-05-27T13:39:14.897Z",
+          "pv" : "LIiRF:SECT36:MON_PHASE_PEAK1:QFE:10S",
+          "Hz" : 0.2,
+          "message" : "  79 lcbbc78.linac.kek.jp:57305     LIiRF:SECT36:MON_PHASE_PEAK1:QFE:10S 0.20",
+          "host" : "lcbbc78.linac.kek.jp:57305"
+        }
+      }
+```
+
+**If you do not use ES, leave the elasticsearch configuration items blank in the `config.ini`.**
 
 ## caSnooper
 > [caSnooper User Guide](https://epics.anl.gov/EpicsDocumentation/ExtensionsManuals/CaSnooper/CaSnooper.html)

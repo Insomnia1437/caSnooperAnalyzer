@@ -4,7 +4,6 @@
 # @Software: PyCharm
 # @Author  : Di Wang(KEK Linac)
 # @Email   : sdcswd@post.kek.jp
-import configparser
 import smtplib
 from email.mime.text import MIMEText
 
@@ -30,8 +29,9 @@ class MyMailSender:
         try:
             smtp_obj = smtplib.SMTP()
             smtp_obj.connect(self.mail_host, 25)
+            smtp_obj.ehlo()
             # some smtp sever do not need to login
-            if len(self.mail_user) != 0:
+            if len(self.mail_user) != 0 and len(self.mail_pass) != 0:
                 smtp_obj.login(self.mail_user, self.mail_pass)
             smtp_obj.sendmail(
                 self.sender, self.receivers, message.as_string())
